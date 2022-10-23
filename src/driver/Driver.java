@@ -43,7 +43,7 @@ public abstract class Driver <T extends Transport> {
 
     @Override
     public String toString() {
-        return String.format("Водитель %s управляет автомобилем %s %s и будет учавствовать в завезде",
+        return String.format("Водитель %s управляет автомобилем %s %s и будет учавствовать в заезде",
                 this.fullName,
                 this.car.getBrand(),
                 this.car.getModel()
