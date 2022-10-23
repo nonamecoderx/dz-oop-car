@@ -3,7 +3,7 @@ package transport;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Bus extends Transport implements Competing{
-    protected Bus(String brand, String model, float engineVolume) {
+    public Bus(String brand, String model, float engineVolume) {
         super(brand, model, engineVolume);
     }
 
