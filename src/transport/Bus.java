@@ -3,8 +3,18 @@ package transport;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Bus extends Transport implements Competing{
-    public Bus(String brand, String model, float engineVolume) {
+    private Capacity capacity;
+    public Bus(String brand, String model, float engineVolume,Capacity capacity) {
         super(brand, model, engineVolume);
+        this.capacity = capacity;
+    }
+
+    public Capacity getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Capacity capacity) {
+        this.capacity = capacity;
     }
 
     @Override
@@ -15,6 +25,15 @@ public class Bus extends Transport implements Competing{
     @Override
     public void stopMovement() {
         System.out.printf("Автобус %s %s начал движение", this.getBrand(),this.getModel() );
+    }
+
+    @Override
+    public void printType() {
+        if (capacity == null){
+            System.out.println("Данных по авто недостаточно");
+        } else {
+            System.out.println("Вместимость автобуса: от " + capacity.getFrom()+" до "+capacity.getTo());
+        }
     }
 
     @Override
