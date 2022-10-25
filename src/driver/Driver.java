@@ -4,7 +4,7 @@ import transport.Transport;
 
 public abstract class Driver <T extends Transport> {
     private final String fullName;
-    private final String category;
+    private String category;
     private final int drivingExpirience;
 
     private final T car;
@@ -12,7 +12,7 @@ public abstract class Driver <T extends Transport> {
 
     protected Driver(String fullName, String category, int drivingExpirience, T car) {
         this.fullName = fullName;
-        this.category = category;
+        setCategory(category);
         this.drivingExpirience = drivingExpirience;
         this.car = car;
     }
@@ -36,6 +36,13 @@ public abstract class Driver <T extends Transport> {
     public String getCategory() {
         return category;
     }
+    public void setCategory(String category){
+        if (category==null){
+            throw new IllegalArgumentException("Укажите тип прав");
+        }
+        this.category = category;
+
+    }
 
     public int getDrivingExpirience() {
         return drivingExpirience;
@@ -43,7 +50,7 @@ public abstract class Driver <T extends Transport> {
 
     @Override
     public String toString() {
-        return String.format("Водитель %s управляет автомобилем %s %s и будет учавствовать в завезде",
+        return String.format("Водитель %s управляет автомобилем %s %s и будет учавствовать в заезде",
                 this.fullName,
                 this.car.getBrand(),
                 this.car.getModel()
