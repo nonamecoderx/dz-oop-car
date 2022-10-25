@@ -25,4 +25,6 @@ public abstract class Transport {
         return engineVolume;
     }
     public abstract void printType();
+
+    public abstract boolean service();
 }
