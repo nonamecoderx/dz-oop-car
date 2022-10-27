@@ -44,7 +44,10 @@ public class Truck extends Transport implements Competing{
     public boolean service() {
         return Math.random()>0.8;
     }
-
+    @Override
+    public void repair() {
+        System.out.println("Грузовик "+ getBrand()+" "+getModel()+" починен");
+    }
     @Override
     public void pitStop() {
         System.out.printf("Грузовик %s %s зашел на пит-стоп", this.getBrand(),this.getModel());
