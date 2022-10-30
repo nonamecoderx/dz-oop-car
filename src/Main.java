@@ -53,6 +53,12 @@ public class Main {
                 kia, truck, bus
         );
 
+        ServiceStation serviceStation = new ServiceStation();
+        serviceStation.addCar(car);
+        serviceStation.addTruck(truck);
+        serviceStation.service();
+        serviceStation.service();
+
         for (Transport transport : transports) {
             printInfoTo(transport);
             System.out.println(transport.getDrivers());
