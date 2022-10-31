@@ -2,18 +2,16 @@ package transport;
 
 import driver.Driver;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public abstract class Transport {
     private final String brand;
     private final String model;
     private final float engineVolume;
 
-    private final List<Driver<?>> drivers = new ArrayList<>(); //пустой список, в который добавляем новых
-    private final List<Mechanic<?>> mechanics = new ArrayList<>(); //пустой список, в который добавляем новых
-    private final List<Sponsor> sponsors = new ArrayList<>(); //пустой список, в который добавляем новых
+    private final Set<Driver<?>> drivers = new HashSet<>(); //пустой список, в который добавляем новых
+    private final Set<Mechanic<?>> mechanics = new HashSet<>(); //пустой список, в который добавляем новых
+    private final Set<Sponsor> sponsors = new HashSet<>(); //пустой список, в который добавляем новых
 
     protected Transport(String brand, String model, float engineVolume) {
         if (brand == null || brand.isBlank()) {
@@ -42,27 +40,27 @@ public abstract class Transport {
     }
 
     public void addDriver(Driver<?>... drivers) {
-        this.drivers.addAll(Arrays.asList(drivers));
+        this.drivers.addAll(Set.of(drivers));
     }
 
-    public List<Driver<?>> getDrivers() {
+    public Set<Driver<?>> getDrivers() {
         return drivers;
     }
 
-    public List<Mechanic<?>> getMechanics() {
+    public Set<Mechanic<?>> getMechanics() {
         return mechanics;
     }
 
-    public List<Sponsor> getSponsors() {
+    public Set<Sponsor> getSponsors() {
         return sponsors;
     }
 
     public void addMechanic(Mechanic<?>... mechanics) {
-        this.mechanics.addAll(Arrays.asList(mechanics));
+        this.mechanics.addAll(Set.of(mechanics));
     }
 
     public void addSponsor(Sponsor... sponsors) {
-        this.sponsors.addAll(Arrays.asList(sponsors));
+        this.sponsors.addAll(Set.of(sponsors));
     }
 
     public float getEngineVolume() {
