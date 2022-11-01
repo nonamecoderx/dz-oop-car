@@ -24,4 +24,18 @@ public class ServiceStation {
             }
         }
     }
+    public static void serviceTransport(Transport transport) { //проверяем каждую машину
+        if (!transport.service()) {
+        }
+        try {
+            throw new RuntimeException("Автомобиль" + transport.getBrand() + " " + transport.getModel() + " не прошел ТО");
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public static void service(Transport... transports) { //проверяем все машины в массиве
+        for (Transport transport : transports) {
+            serviceTransport(transport);
+        }
+    }
 }

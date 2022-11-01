@@ -2,9 +2,15 @@ package transport;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Bus extends Transport implements Competing{
+public class Bus extends Transport implements Competing {
     private Capacity capacity;
-    public Bus(String brand, String model, float engineVolume,Capacity capacity) {
+
+    @Override
+    public int maxSpeed() {
+        return ThreadLocalRandom.current().nextInt(1, 350);
+    }
+
+    public Bus(String brand, String model, float engineVolume, Capacity capacity) {
         super(brand, model, engineVolume);
         this.capacity = capacity;
     }
@@ -13,50 +19,48 @@ public class Bus extends Transport implements Competing{
         return capacity;
     }
 
+    @Override
+    public int getBestTime() {
+        return ThreadLocalRandom.current().nextInt(1, 1000);
+    }
+
     public void setCapacity(Capacity capacity) {
         this.capacity = capacity;
     }
 
     @Override
     public void startMovement() {
-        System.out.printf("Автобус %s %s начал движение", this.getBrand(),this.getModel() );
+        System.out.printf("Автобус %s %s начал движение", this.getBrand(), this.getModel());
     }
 
     @Override
     public void stopMovement() {
-        System.out.printf("Автобус %s %s начал движение", this.getBrand(),this.getModel() );
+        System.out.printf("Автобус %s %s начал движение", this.getBrand(), this.getModel());
     }
 
     @Override
     public void printType() {
-        if (capacity == null){
+        if (capacity == null) {
             System.out.println("Данных по авто недостаточно");
         } else {
-            System.out.println("Вместимость автобуса: от " + capacity.getFrom()+" до "+capacity.getTo());
+            System.out.println("Вместимость автобуса: от " + capacity.getFrom() + " до " + capacity.getTo());
         }
     }
 
     @Override
     public boolean service() {
-        System.out.println("Автобусу "+getBrand()+" "+getModel()+" ТО не требуется");
+        System.out.println("Автобусу " + getBrand() + " " + getModel() + " ТО не требуется");
         return true;
     }
+
     @Override
     public void repair() {
-        System.out.println("Автобус "+ getBrand()+" "+getModel()+" починен");
+        System.out.println("Автобус " + getBrand() + " " + getModel() + " починен");
     }
+
     @Override
     public void pitStop() {
-        System.out.printf("Автобус %s %s зашел на пит-стоп", this.getBrand(),this.getModel());
+        System.out.printf("Автобус %s %s зашел на пит-стоп", this.getBrand(), this.getModel());
     }
 
-    @Override
-    public int getBestTime() {
-        return ThreadLocalRandom.current().nextInt(1,1000);
-    }
-
-    @Override
-    public int maxSpeed() {
-        return ThreadLocalRandom.current().nextInt(1,350);
-    }
 }

@@ -9,6 +9,12 @@ public abstract class Transport {
     private final String model;
     private final float engineVolume;
 
+    public float getEngineVolume() {
+        return engineVolume;
+    }
+
+    public abstract boolean service();
+
     private final Set<Driver<?>> drivers = new HashSet<>(); //пустой список, в который добавляем новых
     private final Set<Mechanic<?>> mechanics = new HashSet<>(); //пустой список, в который добавляем новых
     private final Set<Sponsor> sponsors = new HashSet<>(); //пустой список, в который добавляем новых
@@ -26,10 +32,6 @@ public abstract class Transport {
         }
         this.engineVolume = engineVolume;
     }
-
-    public abstract void startMovement();
-
-    public abstract void stopMovement();
 
     public String getBrand() {
         return brand;
@@ -55,6 +57,11 @@ public abstract class Transport {
         return sponsors;
     }
 
+    public abstract void startMovement();
+
+    public abstract void stopMovement();
+
+
     public void addMechanic(Mechanic<?>... mechanics) {
         this.mechanics.addAll(Set.of(mechanics));
     }
@@ -63,15 +70,16 @@ public abstract class Transport {
         this.sponsors.addAll(Set.of(sponsors));
     }
 
-    public float getEngineVolume() {
-        return engineVolume;
-    }
 
     public abstract void printType();
 
-    public abstract boolean service();
 
     public abstract void repair();
+
+    public static void printInfoTo(Transport transport) {
+        System.out.println("Информация по авто: " + transport.getBrand() + " " + transport.getModel());
+
+    }
 
 }
 

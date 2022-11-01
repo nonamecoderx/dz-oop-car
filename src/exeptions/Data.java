@@ -4,7 +4,6 @@ public class Data {
 
     private static final String VALID_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDIFGHIJKLMNOPQRSTUVWXYZ0123456789_";
 
-
     public static boolean validate(String login, String password, String confirmPassword) {
         try {
             check(login, password, confirmPassword);
@@ -17,12 +16,12 @@ public class Data {
 
     private static void check(String login, String password, String confirmPassword) throws WrongLoginExeption, WrongPasswordExeption {
         if (!validate(login)) {
-            throw new WrongLoginExeption("Unvalid login");
+            throw new WrongLoginExeption("Неверный логин");
         }
         if (!validate(password)) {
-            throw new WrongPasswordExeption("Unvalid password");
+            throw new WrongPasswordExeption("Неверный пароль");
         }
-        if (!password.equals(confirmPassword)){
+        if (!password.equals(confirmPassword)) {
             throw new WrongPasswordExeption("Пароли должны  совпадать");
         }
     }
